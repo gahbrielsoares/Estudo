@@ -92,7 +92,7 @@ func _ready() -> void:
 	_zona_soltas = ZonaEvidencias.new()
 	_zona_soltas.configurar(self)
 	_zona_soltas.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-	_zona_soltas.custom_minimum_size = Vector2(0, 230)
+	_zona_soltas.custom_minimum_size = Vector2(0, 190)
 	principal.add_child(_zona_soltas)
 
 	EstadoJogo.evidencia_adicionada.connect(func(_evidencia): _atualizar.call_deferred())
@@ -117,8 +117,13 @@ func fixar(id_evidencia: String, id_suspeito: String) -> void:
 	_atualizar.call_deferred()
 
 
+## Contradições que existem nesta jogada (algumas só valem para um caminho).
+func _contradicoes() -> Array:
+	return dados.get("contradicoes", []).filter(func(c): return EstadoJogo.condicao(c.get("se", {})))
+
+
 func _verificar_contradicoes() -> void:
-	for contradicao in dados.get("contradicoes", []):
+	for contradicao in _contradicoes():
 		var id: String = contradicao["id"]
 		if id in EstadoJogo.contradicoes_confirmadas:
 			continue
@@ -139,7 +144,7 @@ func _anunciar(contradicao: Dictionary) -> void:
 
 
 func _esta_travada(id_evidencia: String) -> bool:
-	for contradicao in dados.get("contradicoes", []):
+	for contradicao in _contradicoes():
 		if contradicao["id"] in EstadoJogo.contradicoes_confirmadas and id_evidencia in contradicao["evidencias"]:
 			return true
 	return false
@@ -155,8 +160,8 @@ func _atualizar() -> void:
 		destino.adicionar_cartao(CartaoEvidencia.new(evidencia, _esta_travada(id)))
 	for id_suspeito in _zonas:
 		var confirmadas := []
-		for contradicao in dados.get("contradicoes", []):
+		for contradicao in _contradicoes():
 			if contradicao["suspeito"] == id_suspeito and contradicao["id"] in EstadoJogo.contradicoes_confirmadas:
 				confirmadas.append(contradicao)
 		_zonas[id_suspeito].mostrar_contradicoes(confirmadas)
-	_contador.text = "Contradições: %d de %d    " % [EstadoJogo.contradicoes_confirmadas.size(), dados.get("contradicoes", []).size()]
+	_contador.text = "Contradições: %d de %d    " % [EstadoJogo.contradicoes_confirmadas.size(), _contradicoes().size()]

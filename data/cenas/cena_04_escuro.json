@@ -1,0 +1,33 @@
+{
+  "id": "cena_04_escuro",
+  "tipo": "dialogo",
+  "imagem": "res://art/provisorio/cena_04_escuro.png",
+  "personagens": ["clara", "bruna", "theo"],
+  "proxima": "cena_05_barracao",
+  "inicio": "abertura",
+  "nos": {
+    "abertura": { "fala": "narrador", "texto": "22h33. Escuridão total. Você sai do chalé tateando a parede, com a lanterna do celular na mão.", "proximo": "grito" },
+    "grito": { "fala": "bruna", "texto": "Aqui! Aqui fora!", "proximo": "aponta" },
+    "aponta": { "fala": "narrador", "texto": "Perto da fogueira quase apagada, a Bruna aponta para o barracão de barcos, a uns cem metros dali.", "proximo": "luz" },
+    "luz": { "fala": "bruna", "texto": "Tinha uma luz lá dentro. Ela balançou, caiu e apagou. Depois eu ouvi um barulho.", "proximo": "gerador" },
+    "gerador": { "fala": "theo", "texto": "O Rafael foi religar o gerador. O gerador fica no barracão.", "proximo": "chamou" },
+    "chamou": { "fala": "clara", "texto": "Ele não responde. Eu já chamei três vezes.", "proximo": "alguem" },
+    "alguem": { "fala": "theo", "texto": "Alguém tem que ir até lá. Agora.", "proximo": "e3" },
+    "e3": {
+      "fala": "narrador",
+      "texto": "Todos olham para você. Com quem você vai?",
+      "tempo": 8,
+      "padrao": 2,
+      "escolhas": [
+        { "texto": "Ir com a Clara.", "mudo": true, "definir": { "e3": "clara" }, "proximo": "com_clara" },
+        { "texto": "Ir com a Bruna.", "mudo": true, "definir": { "e3": "bruna" }, "proximo": "com_bruna" },
+        { "texto": "Ir com o Theo.", "mudo": true, "definir": { "e3": "theo" }, "proximo": "com_theo" }
+      ]
+    },
+    "com_clara": { "fala": "narrador", "texto": "Você e a Clara seguem pela trilha. Ela segura o seu braço com força, sem dizer nada.", "proximo": "porta" },
+    "com_bruna": { "fala": "narrador", "texto": "Você e a Bruna seguem pela trilha. Ela repete baixinho: \"eu avisei, eu avisei\".", "proximo": "porta" },
+    "com_theo": { "fala": "narrador", "texto": "Você e o Theo seguem pela trilha. Ele leva a câmera pendurada no pescoço, por hábito.", "proximo": "porta" },
+    "porta": { "fala": "narrador", "texto": "A porta do barracão está entreaberta. Lá dentro, uma lanterna caída no chão ainda ilumina alguma coisa.", "proximo": "fim" },
+    "fim": { "fim": true }
+  }
+}

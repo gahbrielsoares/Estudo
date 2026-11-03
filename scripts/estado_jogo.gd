@@ -81,6 +81,16 @@ func caminho() -> String:
 	return "clara" if marcadores.get("e2", "") == "verdade" else "rafael"
 
 
+## Verifica uma condição dos arquivos de dados, como {"e1": "bruna"} ou {"caminho": "clara"}.
+## Todas as chaves precisam bater. Uma condição vazia é sempre verdadeira.
+func condicao(se: Dictionary) -> bool:
+	for chave in se:
+		var valor: String = caminho() if chave == "caminho" else str(marcadores.get(chave, ""))
+		if valor != str(se[chave]):
+			return false
+	return true
+
+
 ## Prende uma evidência em um suspeito. Um id vazio devolve a foto para a área de soltas.
 func fixar_evidencia(id_evidencia: String, id_suspeito: String) -> void:
 	if id_suspeito.is_empty():

@@ -44,7 +44,7 @@ func ir_para(id: String) -> void:
 		_atual.queue_free()
 		_atual = null
 
-	if id == "fim_ato_1":
+	if id == "fim_demo":
 		_atual = _criar_tela_fim()
 		EstadoJogo.pausado = true
 	else:
@@ -93,7 +93,7 @@ func _criar_tela_fim() -> Control:
 	centro.alignment = BoxContainer.ALIGNMENT_CENTER
 	centro.add_theme_constant_override("separation", 24)
 	tela.add_child(centro)
-	for item in [["FIM DO ATO 1", 64, Color(0.95, 0.82, 0.55)], ["Continua em breve.", 30, Color(1, 1, 1, 0.6)]]:
+	for item in [["FIM DA VERSÃO DE TESTE", 64, Color(0.95, 0.82, 0.55)], ["A noite em Riviera Lake continua em breve.", 30, Color(1, 1, 1, 0.6)]]:
 		var rotulo := Label.new()
 		rotulo.text = item[0]
 		rotulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

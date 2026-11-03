@@ -17,7 +17,7 @@ Cinco amigos passam um fim de semana em um chalé à beira de Riviera Lake. Sem 
 
 ## Status
 
-Ato 1 jogável do início ao fim (com arte provisória): investigação no corredor do chalé, conversa na fogueira e conversa na cozinha, com escolhas que mudam o rumo da história.
+Ato 1 e primeiro ciclo do Ato 2 jogáveis (com arte provisória): corredor, fogueira, cozinha, apagão e barracão de barcos. As escolhas mudam o rumo da história, as pistas e a própria cena.
 
 ## Como rodar
 
@@ -42,7 +42,7 @@ Ato 1 jogável do início ao fim (com arte provisória): investigação no corre
 | `art/provisorio/` | Arte temporária do protótipo |
 | `docs/` | Documento de design (**contém spoilers**) |
 
-Para criar uma cena nova, basta adicionar uma imagem e um JSON em `data/cenas/`, sem mexer no código.
+Para criar uma cena nova, basta adicionar uma imagem e um JSON em `data/cenas/`, sem mexer no código. Pistas, imagens, falas e contradições aceitam um campo `"se"` (por exemplo, `{"caminho": "clara"}` ou `{"e1": "bruna"}`) para aparecer só em certas jogadas.
 
 ## Tecnologia
 

@@ -1,24 +1,90 @@
 {
   "suspeitos": [
-    { "id": "clara",  "nome": "Clara",  "descricao": "Estudante de enfermagem. Cuida de todo mundo.", "cor": "#c98fa5" },
-    { "id": "rafael", "nome": "Rafael", "descricao": "O chalé é da família dele. Faz piada de tudo.", "cor": "#6f9d77" },
-    { "id": "bruna",  "nome": "Bruna",  "descricao": "Sincera e ansiosa. Está nervosa desde a estrada.", "cor": "#d4a35a" },
-    { "id": "theo",   "nome": "Theo",   "descricao": "Fotografa tudo. Anda com um canivete.", "cor": "#7d8fc4" }
+    {
+      "id": "clara",
+      "nome": "Clara",
+      "descricao": "Estudante de enfermagem. Cuida de todo mundo.",
+      "cor": "#c98fa5"
+    },
+    {
+      "id": "rafael",
+      "nome": "Rafael",
+      "descricao": "O chalé é da família dele. Faz piada de tudo.",
+      "cor": "#6f9d77"
+    },
+    {
+      "id": "bruna",
+      "nome": "Bruna",
+      "descricao": "Sincera e ansiosa. Está nervosa desde a estrada.",
+      "cor": "#d4a35a"
+    },
+    {
+      "id": "theo",
+      "nome": "Theo",
+      "descricao": "Fotografa tudo. Anda com um canivete.",
+      "cor": "#7d8fc4"
+    }
   ],
   "contradicoes": [
     {
       "id": "c_mascara",
       "suspeito": "rafael",
-      "evidencias": ["ev_mascara", "ev_foto_parede"],
+      "evidencias": [
+        "ev_mascara",
+        "ev_foto_parede"
+      ],
       "titulo": "Rafael mentiu sobre a máscara",
       "texto": "Ele disse que ela sempre esteve ali. O prego novo e a foto antiga provam que não."
     },
     {
       "id": "c_antes",
       "suspeito": "rafael",
-      "evidencias": ["ev_alicate", "ev_botas_44"],
+      "evidencias": [
+        "ev_alicate",
+        "ev_botas_44"
+      ],
       "titulo": "Rafael esconde algo desta viagem",
       "texto": "Lama seca nas botas dele e um alicate no bolso. Ele não contou tudo sobre este fim de semana."
+    },
+    {
+      "id": "c_morte_estranha",
+      "se": {
+        "caminho": "rafael"
+      },
+      "suspeito": "rafael",
+      "evidencias": [
+        "ev_chao_seco",
+        "ev_rasgo_limpo",
+        "ev_vapor"
+      ],
+      "titulo": "Tem algo errado com a morte do Rafael",
+      "texto": "Nenhum sangue, um rasgo limpo demais e um vapor perto da boca. Ele está mesmo morto?"
+    },
+    {
+      "id": "c_fios",
+      "se": {
+        "caminho": "rafael"
+      },
+      "suspeito": "rafael",
+      "evidencias": [
+        "ev_alicate",
+        "ev_fios_cortados"
+      ],
+      "titulo": "O alicate do Rafael cortou os fios",
+      "texto": "Os fios do gerador foram cortados com alicate. O único alicate do chalé estava no bolso dele."
+    },
+    {
+      "id": "c_kit",
+      "se": {
+        "caminho": "clara"
+      },
+      "suspeito": "clara",
+      "evidencias": [
+        "ev_corte_preciso",
+        "ev_luva"
+      ],
+      "titulo": "As luvas vieram do kit da Clara",
+      "texto": "Um corte de quem conhece o corpo humano e uma luva igual às do kit de primeiros socorros que ela montou."
     }
   ]
 }

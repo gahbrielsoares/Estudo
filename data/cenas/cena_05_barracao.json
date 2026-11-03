@@ -1,0 +1,118 @@
+{
+  "id": "cena_05_barracao",
+  "tipo": "investigacao",
+  "imagem": "res://art/provisorio/cena_05_barracao_rafael.png",
+  "imagens": [
+    { "se": { "caminho": "clara" }, "imagem": "res://art/provisorio/cena_05_barracao_clara.png" }
+  ],
+  "proxima": "cena_06_depois",
+  "saida": {
+    "rotulo": "Voltar para os outros",
+    "confirmacao": "Quem veio com você já está chamando lá de fora. Depois disso, você não volta mais ao barracão. Fotografou tudo o que queria?"
+  },
+  "introducao": {
+    "titulo": "22h38 · O barracão de barcos",
+    "texto": "O Rafael está caído no chão. Quem veio com você ficou na porta, sem coragem de entrar. Olhe tudo com atenção."
+  },
+  "pontos": [
+    {
+      "id": "rosto_r", "se": { "caminho": "rafael" },
+      "nome": "O rosto do Rafael",
+      "retangulo": [740, 740, 130, 120],
+      "descricao": "O rosto está virado para o chão. Perto da boca, o ar gelado forma um vapor fino. Deve ser o seu próprio hálito. Não deve?",
+      "evidencia": { "id": "ev_vapor", "titulo": "Vapor perto da boca", "texto": "Um vapor fino no ar gelado, perto do rosto dele. O seu hálito... ou o dele?" }
+    },
+    {
+      "id": "rosto_c", "se": { "caminho": "clara" },
+      "nome": "O rosto do Rafael",
+      "retangulo": [740, 740, 130, 120],
+      "descricao": "O rosto está virado para o chão. Nenhum movimento. Nenhum som."
+    },
+    {
+      "id": "costas_r", "se": { "caminho": "rafael" },
+      "nome": "A jaqueta",
+      "retangulo": [870, 745, 300, 110],
+      "descricao": "A jaqueta verde tem um rasgo nas costas. As bordas do tecido estão limpas.",
+      "evidencia": { "id": "ev_rasgo_limpo", "titulo": "Rasgo limpo demais", "texto": "O rasgo nas costas da jaqueta não tem uma única mancha." }
+    },
+    {
+      "id": "costas_c", "se": { "caminho": "clara" },
+      "nome": "A jaqueta",
+      "retangulo": [870, 745, 300, 110],
+      "descricao": "Um único corte nas costas, no lugar exato. Quem fez isso sabia onde cortar.",
+      "evidencia": { "id": "ev_corte_preciso", "titulo": "Um corte preciso", "texto": "Um só golpe, no lugar certo. Quem fez isso conhece o corpo humano." }
+    },
+    {
+      "id": "chao_r", "se": { "caminho": "rafael" },
+      "nome": "O chão sob o corpo",
+      "retangulo": [880, 860, 330, 70],
+      "descricao": "As tábuas sob o corpo estão secas. Completamente secas.",
+      "evidencia": { "id": "ev_chao_seco", "titulo": "Chão seco", "texto": "Nenhuma gota de sangue sob o corpo." }
+    },
+    {
+      "id": "chao_c", "se": { "caminho": "clara" },
+      "nome": "O chão sob o corpo",
+      "retangulo": [880, 860, 330, 70],
+      "descricao": "Uma poça escura se espalha pelas tábuas, devagar."
+    },
+    {
+      "id": "pulso_r", "se": { "caminho": "rafael" },
+      "nome": "O pulso",
+      "retangulo": [660, 835, 90, 60],
+      "descricao": "O pulso está vazio. Na fogueira, ele usava um relógio de mergulho enorme.",
+      "evidencia": { "id": "ev_sem_relogio", "titulo": "O relógio sumiu", "texto": "Na fogueira, o Rafael usava um relógio de mergulho. Agora, o pulso dele está vazio." }
+    },
+    {
+      "id": "pulso_c", "se": { "caminho": "clara" },
+      "nome": "O pulso",
+      "retangulo": [660, 835, 90, 60],
+      "descricao": "O relógio de mergulho parou às 22h29. O vidro rachou na queda.",
+      "evidencia": { "id": "ev_relogio_2229", "titulo": "Relógio parado: 22h29", "texto": "O Rafael caiu às 22h29. Onde estava cada um nesse horário?" }
+    },
+    {
+      "id": "luva", "se": { "caminho": "clara" },
+      "nome": "Luva de látex",
+      "retangulo": [295, 745, 100, 70],
+      "descricao": "Uma luva de látex rasgada, perto da porta do gerador. É do mesmo tipo das que estavam no kit de primeiros socorros.",
+      "evidencia": { "id": "ev_luva", "titulo": "Luva de látex", "texto": "Igual às do kit de primeiros socorros do chalé." }
+    },
+    {
+      "id": "gerador_r", "se": { "caminho": "rafael" },
+      "nome": "Porta do gerador",
+      "retangulo": [60, 360, 240, 380],
+      "descricao": "Os fios do gerador foram cortados. Um corte limpo, como o de um alicate.",
+      "evidencia": { "id": "ev_fios_cortados", "titulo": "Fios cortados", "texto": "Alguém cortou os fios do gerador com um alicate." }
+    },
+    {
+      "id": "gerador_c", "se": { "caminho": "clara" },
+      "nome": "Porta do gerador",
+      "retangulo": [60, 360, 240, 380],
+      "descricao": "O cabo do gerador foi puxado da tomada, sem nenhum corte. Alguém só queria o escuro por alguns minutos."
+    },
+    {
+      "id": "lanterna", "nome": "Lanterna caída",
+      "retangulo": [545, 915, 110, 60],
+      "descricao": "A lanterna do Rafael, ainda acesa. Foi essa a luz que a Bruna viu cair."
+    },
+    {
+      "id": "botas", "nome": "As botas",
+      "retangulo": [1400, 750, 100, 135],
+      "descricao": "As botas de trilha do Rafael, tamanho 44. Lama fresca por cima da lama seca."
+    },
+    {
+      "id": "ferramentas", "nome": "Caixa de ferramentas",
+      "retangulo": [1245, 425, 180, 60],
+      "descricao": "A caixa de ferramentas está aberta, revirada. Alguém procurou alguma coisa aqui com pressa."
+    },
+    {
+      "id": "canoa", "nome": "Canoa",
+      "retangulo": [180, 150, 820, 180],
+      "descricao": "Uma canoa velha, presa na parede. Coberta de poeira, menos em uma das pontas."
+    },
+    {
+      "id": "corda", "nome": "Corda",
+      "retangulo": [1775, 755, 130, 110],
+      "descricao": "Corda de amarrar barcos, enrolada com cuidado. Alguém aqui é muito organizado."
+    }
+  ]
+}

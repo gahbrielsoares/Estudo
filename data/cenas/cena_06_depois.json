@@ -1,0 +1,27 @@
+{
+  "id": "cena_06_depois",
+  "tipo": "dialogo",
+  "imagem": "res://art/provisorio/cena_04_escuro.png",
+  "personagens": ["clara", "bruna", "theo"],
+  "proxima": "fim_demo",
+  "inicio": "abertura",
+  "nos": {
+    "abertura": { "fala": "narrador", "texto": "Você sai do barracão. As pernas não obedecem direito.", "proximo": "reacao" },
+    "reacao": {
+      "ramos": [
+        { "se": { "e3": "clara" }, "proximo": "reacao_clara" },
+        { "se": { "e3": "bruna" }, "proximo": "reacao_bruna" }
+      ],
+      "senao": "reacao_theo"
+    },
+    "reacao_clara": { "fala": "clara", "texto": "Não... não, não, não.", "proximo": "reacao_clara_2" },
+    "reacao_clara_2": { "fala": "narrador", "texto": "A Clara cai de joelhos na grama. Ela chora tanto que mal consegue respirar.", "proximo": "chaves" },
+    "reacao_bruna": { "fala": "bruna", "texto": "Eu falei. Eu falei que alguma coisa ia acontecer com a gente.", "proximo": "chaves" },
+    "reacao_theo": { "fala": "theo", "texto": "A gente tem que sair daqui. Agora. Cadê as chaves do carro?", "proximo": "chaves" },
+    "chaves": { "fala": "bruna", "texto": "As chaves estavam com o Rafael.", "proximo": "ninguem" },
+    "ninguem": { "fala": "narrador", "texto": "Ninguém quer voltar lá dentro para pegá-las.", "proximo": "janela" },
+    "janela": { "fala": "narrador", "texto": "Pela janela do chalé, iluminado pela lua, dá para ver o corredor.", "proximo": "mascara" },
+    "mascara": { "fala": "narrador", "texto": "O prego na parede está vazio. A máscara sumiu.", "proximo": "fim" },
+    "fim": { "fim": true }
+  }
+}

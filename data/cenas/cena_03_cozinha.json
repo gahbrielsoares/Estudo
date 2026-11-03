@@ -3,7 +3,7 @@
   "tipo": "dialogo",
   "imagem": "res://art/provisorio/cena_03_cozinha.png",
   "personagens": ["clara"],
-  "proxima": "fim_ato_1",
+  "proxima": "cena_04_escuro",
   "inicio": "abertura",
   "nos": {
     "abertura": { "fala": "narrador", "texto": "22h10. A lâmpada amarela da cozinha zumbe. Lá fora, as vozes parecem distantes.", "proximo": "gelo" },

@@ -56,8 +56,7 @@ func _montar() -> void:
 	_fundo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_fundo.stretch_mode = TextureRect.STRETCH_SCALE
 	_fundo.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	if dados.has("imagem"):
-		_fundo.texture = load(dados["imagem"])
+	_fundo.texture = load(_escolher_imagem(dados))
 	add_child(_fundo)
 
 	_escurecer = ColorRect.new()
@@ -134,6 +133,14 @@ func _montar() -> void:
 	add_child(_flash)
 
 
+## Usa a primeira imagem de "imagens" cuja condição bate; senão, "imagem".
+static func _escolher_imagem(dados_cena: Dictionary) -> String:
+	for variante in dados_cena.get("imagens", []):
+		if EstadoJogo.condicao(variante.get("se", {})):
+			return variante["imagem"]
+	return dados_cena.get("imagem", "")
+
+
 func _criar_retrato(personagem: Dictionary) -> Control:
 	var coluna := VBoxContainer.new()
 	coluna.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -180,7 +187,7 @@ func _ir_para_no(id: String) -> void:
 	_definir(no.get("definir", {}))
 	if no.has("ramos"):
 		for ramo in no["ramos"]:
-			if _condicao(ramo.get("se", {})):
+			if EstadoJogo.condicao(ramo.get("se", {})):
 				_ir_para_no(ramo["proximo"])
 				return
 		_ir_para_no(no.get("senao", ""))
@@ -196,13 +203,6 @@ func _ir_para_no(id: String) -> void:
 func _definir(valores: Dictionary) -> void:
 	for chave in valores:
 		EstadoJogo.marcadores[chave] = valores[chave]
-
-
-func _condicao(se: Dictionary) -> bool:
-	for chave in se:
-		if str(EstadoJogo.marcadores.get(chave, "")) != str(se[chave]):
-			return false
-	return true
 
 
 func _mostrar_fala(no: Dictionary) -> void:

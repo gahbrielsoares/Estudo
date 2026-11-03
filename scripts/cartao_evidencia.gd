@@ -35,7 +35,7 @@ func _ready() -> void:
 	add_child(coluna)
 
 	var miniatura := TextureRect.new()
-	miniatura.custom_minimum_size = Vector2(150, 105)
+	miniatura.custom_minimum_size = Vector2(134, 92)
 	miniatura.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	miniatura.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	miniatura.clip_contents = true
@@ -45,9 +45,9 @@ func _ready() -> void:
 
 	var titulo := Label.new()
 	titulo.text = evidencia.get("titulo", "")
-	titulo.custom_minimum_size = Vector2(150, 0)
+	titulo.custom_minimum_size = Vector2(134, 0)
 	titulo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	titulo.add_theme_font_size_override("font_size", 17)
+	titulo.add_theme_font_size_override("font_size", 16)
 	titulo.add_theme_color_override("font_color", Color(0.15, 0.12, 0.1))
 	titulo.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	coluna.add_child(titulo)

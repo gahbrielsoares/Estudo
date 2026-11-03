@@ -5,6 +5,7 @@ extends Control
 signal concluida(proxima: String)
 
 const QuadroSuspeitos := preload("res://scripts/quadro_suspeitos.gd")
+const CenaDialogo := preload("res://scripts/cena_dialogo.gd")
 
 @export_file("*.json") var caminho_dados := "res://data/cenas/cena_01_corredor.json"
 
@@ -116,8 +117,8 @@ func _montar_cena() -> void:
 	_imagem.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_imagem.stretch_mode = TextureRect.STRETCH_SCALE
 	_imagem.mouse_filter = Control.MOUSE_FILTER_STOP
-	if dados.has("imagem"):
-		_imagem.texture = load(dados["imagem"])
+	dados["imagem"] = CenaDialogo._escolher_imagem(dados)
+	_imagem.texture = load(dados["imagem"])
 	_imagem.gui_input.connect(_ao_clicar_fundo)
 	add_child(_imagem)
 
@@ -126,7 +127,8 @@ func _montar_cena() -> void:
 	_pontos.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_pontos)
 	for ponto in dados.get("pontos", []):
-		_criar_ponto(ponto)
+		if EstadoJogo.condicao(ponto.get("se", {})):
+			_criar_ponto(ponto)
 
 	_escuridao = ColorRect.new()
 	_escuridao.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -210,6 +212,7 @@ func _montar_hud() -> void:
 	_caixa_texto.visible = false
 	add_child(_caixa_texto)
 	var coluna_texto := VBoxContainer.new()
+	coluna_texto.mouse_filter = Control.MOUSE_FILTER_IGNORE  # o texto não pode bloquear cliques na cena
 	_caixa_texto.add_child(coluna_texto)
 	_titulo_texto = _novo_rotulo("", 30, COR_DESTAQUE)
 	coluna_texto.add_child(_titulo_texto)

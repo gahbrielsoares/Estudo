@@ -18,7 +18,8 @@ func configurar(dono_quadro: Control, dados_suspeito: Dictionary = {}) -> void:
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	size_flags_vertical = Control.SIZE_EXPAND_FILL
+	if not suspeito.is_empty():
+		size_flags_vertical = Control.SIZE_EXPAND_FILL  # colunas de suspeitos ocupam o espaço livre
 
 	var estilo := StyleBoxFlat.new()
 	estilo.bg_color = Color(0.1, 0.07, 0.05, 0.55)
@@ -37,12 +38,19 @@ func _ready() -> void:
 		_lista_contradicoes.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		coluna.add_child(_lista_contradicoes)
 
+	# As fotos ficam numa área rolável, para caber qualquer quantidade.
+	var rolagem := ScrollContainer.new()
+	rolagem.mouse_filter = Control.MOUSE_FILTER_PASS  # deixa o "soltar" chegar até a zona
+	rolagem.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	rolagem.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	coluna.add_child(rolagem)
 	_cartoes = HFlowContainer.new()
 	_cartoes.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_cartoes.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_cartoes.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_cartoes.add_theme_constant_override("h_separation", 10)
 	_cartoes.add_theme_constant_override("v_separation", 10)
-	coluna.add_child(_cartoes)
+	rolagem.add_child(_cartoes)
 
 
 func _criar_cabecalho() -> Control:
