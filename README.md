@@ -17,7 +17,27 @@ Cinco amigos passam um fim de semana em um chalé à beira de Riviera Lake. Sem 
 
 ## Status
 
-Em pré-produção.
+Protótipo da mecânica principal: cena escura explorada com a lanterna do celular, fotos como evidências e bateria limitada.
+
+## Como rodar
+
+1. Instale o [Godot 4.3](https://godotengine.org/download) (versão padrão, não a .NET).
+2. Clone este repositório e abra a pasta no Godot (Importar → `project.godot`).
+3. Pressione **F5**.
+
+**Controles:** mouse move a lanterna · clique examina · **F** liga/desliga a lanterna · **C** modo câmera · **Tab** evidências · **Esc** sai da câmera.
+
+## Estrutura
+
+| Pasta | Conteúdo |
+|---|---|
+| `scripts/` | `estado_jogo.gd` (bateria, lanterna, evidências, escolhas) e `cena_investigacao.gd` (cena jogável) |
+| `data/cenas/` | Uma cena por arquivo JSON: imagem, pontos de interesse, descrições e evidências |
+| `shaders/` | Escuridão e luz da lanterna |
+| `art/provisorio/` | Arte temporária do protótipo |
+| `docs/` | Documento de design (**contém spoilers**) |
+
+Para criar uma cena nova, basta adicionar uma imagem e um JSON em `data/cenas/`, sem mexer no código.
 
 ## Tecnologia
 
@@ -30,4 +50,4 @@ Em pré-produção.
 - **Código:** MIT
 - **Arte, roteiro, textos e cenas:** todos os direitos reservados
 
-> Este repositório não contém o roteiro do jogo, para preservar a experiência de quem vai jogar.
+> ⚠️ A pasta `docs/` e os arquivos de cena contêm spoilers do jogo.

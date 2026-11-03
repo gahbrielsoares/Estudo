@@ -1,0 +1,89 @@
+{
+  "id": "cena_01_corredor",
+  "imagem": "res://art/provisorio/cena_01_corredor.png",
+  "introducao": {
+    "titulo": "Sexta-feira, 21h40 · O corredor do chalé",
+    "texto": "Os outros estão lá fora, acendendo a fogueira. A luz do chalé ainda não foi ligada. Use a lanterna do celular para olhar ao redor."
+  },
+  "pontos": [
+    {
+      "id": "mascara",
+      "nome": "A máscara",
+      "retangulo": [560, 200, 180, 250],
+      "descricao": "Uma máscara pálida, rachada no canto. Os buracos dos olhos parecem fundos demais. O prego que a segura é novo, sem nenhuma ferrugem.",
+      "evidencia": {
+        "id": "ev_mascara",
+        "titulo": "A máscara na parede",
+        "texto": "O prego é novo. Alguém pendurou isso há pouco tempo."
+      }
+    },
+    {
+      "id": "foto_parede_vazia",
+      "nome": "Foto antiga",
+      "retangulo": [900, 380, 150, 170],
+      "descricao": "Rafael criança, neste mesmo corredor. A parede atrás dele está vazia. Nenhuma máscara.",
+      "evidencia": {
+        "id": "ev_foto_parede",
+        "titulo": "A parede vazia",
+        "texto": "Rafael disse que a máscara \"sempre esteve aí\". Esta foto diz o contrário."
+      }
+    },
+    {
+      "id": "fotos_familia",
+      "nome": "Fotos de família",
+      "retangulo": [900, 180, 330, 195],
+      "descricao": "A família do Rafael em férias no lago. Sorrisos de verão, muitos anos atrás."
+    },
+    {
+      "id": "carregador",
+      "nome": "Carregador",
+      "retangulo": [350, 568, 62, 44],
+      "item": {
+        "tipo": "recarga",
+        "quantidade": 30,
+        "texto_uso": "Você deixa o celular carregando por alguns minutos. (+30% de bateria)",
+        "texto_usado": "Não dá para esperar mais. Os outros estão chamando lá fora."
+      }
+    },
+    {
+      "id": "chaves",
+      "nome": "Chaves do carro",
+      "retangulo": [226, 568, 100, 42],
+      "descricao": "As chaves do carro do Rafael. O chaveiro é de uma marina."
+    },
+    {
+      "id": "jaqueta",
+      "nome": "Jaqueta verde",
+      "retangulo": [1205, 360, 145, 240],
+      "descricao": "A jaqueta do Rafael. No bolso, um alicate pequeno. Estranho trazer isso para um fim de semana no lago.",
+      "evidencia": {
+        "id": "ev_alicate",
+        "titulo": "Alicate no bolso",
+        "texto": "Por que alguém traz um alicate na jaqueta para um fim de semana no lago?"
+      }
+    },
+    {
+      "id": "botas",
+      "nome": "Botas de trilha",
+      "retangulo": [1220, 765, 170, 80],
+      "descricao": "Botas enormes, com lama seca na sola. Na etiqueta: tamanho 44.",
+      "evidencia": {
+        "id": "ev_botas_44",
+        "titulo": "Botas tamanho 44",
+        "texto": "Lama seca na sola. Alguém já andou pela trilha antes de todos chegarem?"
+      }
+    },
+    {
+      "id": "janela",
+      "nome": "Janela",
+      "retangulo": [1432, 122, 356, 436],
+      "descricao": "O lago está parado como um espelho. Do outro lado, nenhuma luz. Nenhum vizinho por quilômetros."
+    },
+    {
+      "id": "bolsa_camera",
+      "nome": "Bolsa da câmera",
+      "retangulo": [600, 860, 285, 145],
+      "descricao": "A câmera antiga do Theo. Ele fotografa tudo, e ela grava a hora exata de cada foto."
+    }
+  ]
+}
