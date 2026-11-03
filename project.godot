@@ -7,7 +7,7 @@ config_version=5
 config/name="Férias: Em Riviera Lake"
 config/description="Episódio 1 da série Férias."
 run/main_scene="res://scenes/cena_investigacao.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
 

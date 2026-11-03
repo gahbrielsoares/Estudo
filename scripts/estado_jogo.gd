@@ -5,6 +5,7 @@ extends Node
 signal bateria_mudou(valor: float)
 signal lanterna_mudou(ligada: bool)
 signal evidencia_adicionada(evidencia: Dictionary)
+signal quadro_mudou
 
 const BATERIA_INICIAL := 58.0
 const CUSTO_FOTO := 6.0
@@ -15,10 +16,15 @@ var lanterna_ligada: bool = true
 var evidencias: Array[Dictionary] = []
 ## Marcadores de história: escolhas (ex.: "e2_verdade") e itens já usados.
 var marcadores: Dictionary = {}
+## Quadro de suspeitos: id da evidência -> id do suspeito onde ela foi presa.
+var quadro: Dictionary = {}
+var contradicoes_confirmadas: Array[String] = []
+## Pausa o consumo de bateria (por exemplo, com o quadro de suspeitos aberto).
+var pausado := false
 
 
 func _process(delta: float) -> void:
-	if lanterna_ligada:
+	if lanterna_ligada and not pausado:
 		gastar_bateria(CONSUMO_LANTERNA_POR_SEGUNDO * delta)
 
 
@@ -69,10 +75,22 @@ func adicionar_evidencia(evidencia: Dictionary) -> bool:
 	return true
 
 
+## Prende uma evidência em um suspeito. Um id vazio devolve a foto para a área de soltas.
+func fixar_evidencia(id_evidencia: String, id_suspeito: String) -> void:
+	if id_suspeito.is_empty():
+		quadro.erase(id_evidencia)
+	else:
+		quadro[id_evidencia] = id_suspeito
+	quadro_mudou.emit()
+
+
 func reiniciar() -> void:
 	bateria = BATERIA_INICIAL
 	lanterna_ligada = true
 	evidencias.clear()
 	marcadores.clear()
+	quadro.clear()
+	contradicoes_confirmadas.clear()
+	pausado = false
 	bateria_mudou.emit(bateria)
 	lanterna_mudou.emit(lanterna_ligada)

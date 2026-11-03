@@ -1,0 +1,24 @@
+{
+  "suspeitos": [
+    { "id": "clara",  "nome": "Clara",  "descricao": "Estudante de enfermagem. Cuida de todo mundo.", "cor": "#c98fa5" },
+    { "id": "rafael", "nome": "Rafael", "descricao": "O chalé é da família dele. Faz piada de tudo.", "cor": "#6f9d77" },
+    { "id": "bruna",  "nome": "Bruna",  "descricao": "Sincera e ansiosa. Está nervosa desde a estrada.", "cor": "#d4a35a" },
+    { "id": "theo",   "nome": "Theo",   "descricao": "Fotografa tudo. Anda com um canivete.", "cor": "#7d8fc4" }
+  ],
+  "contradicoes": [
+    {
+      "id": "c_mascara",
+      "suspeito": "rafael",
+      "evidencias": ["ev_mascara", "ev_foto_parede"],
+      "titulo": "Rafael mentiu sobre a máscara",
+      "texto": "Ele disse que ela sempre esteve ali. O prego novo e a foto antiga provam que não."
+    },
+    {
+      "id": "c_antes",
+      "suspeito": "rafael",
+      "evidencias": ["ev_alicate", "ev_botas_44"],
+      "titulo": "Rafael esconde algo desta viagem",
+      "texto": "Lama seca nas botas dele e um alicate no bolso. Ele não contou tudo sobre este fim de semana."
+    }
+  ]
+}

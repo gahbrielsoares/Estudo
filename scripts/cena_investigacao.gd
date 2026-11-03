@@ -2,6 +2,8 @@ extends Control
 ## Cena de investigação: uma ilustração estática explorada com a lanterna do celular.
 ## Os pontos de interesse vêm de um arquivo JSON, para que novas cenas não exijam código novo.
 
+const QuadroSuspeitos := preload("res://scripts/quadro_suspeitos.gd")
+
 @export_file("*.json") var caminho_dados := "res://data/cenas/cena_01_corredor.json"
 
 const RAIO_LANTERNA := 230.0
@@ -32,8 +34,7 @@ var _barra_bateria: ProgressBar
 var _botao_lanterna: Button
 var _botao_camera: Button
 var _botao_evidencias: Button
-var _painel_evidencias: PanelContainer
-var _lista_evidencias: VBoxContainer
+var _quadro: Control
 
 
 func _ready() -> void:
@@ -77,11 +78,14 @@ func _unhandled_input(evento: InputEvent) -> void:
 			KEY_F:
 				EstadoJogo.alternar_lanterna()
 			KEY_C:
-				_alternar_camera()
+				if not _quadro.visible:
+					_alternar_camera()
 			KEY_TAB:
 				_alternar_evidencias()
 			KEY_ESCAPE:
-				if modo_camera:
+				if _quadro.visible:
+					_alternar_evidencias()
+				elif modo_camera:
 					_alternar_camera()
 
 
@@ -191,7 +195,7 @@ func _montar_hud() -> void:
 	coluna.add_child(_botao_lanterna)
 	_botao_camera = _novo_botao("Câmera  [C]", _alternar_camera)
 	coluna.add_child(_botao_camera)
-	_botao_evidencias = _novo_botao("Evidências (0)  [Tab]", _alternar_evidencias)
+	_botao_evidencias = _novo_botao("Quadro de suspeitos (0)  [Tab]", _alternar_evidencias)
 	coluna.add_child(_botao_evidencias)
 
 	# Caixa de texto (canto inferior esquerdo)
@@ -212,22 +216,11 @@ func _montar_hud() -> void:
 	_temporizador_texto.timeout.connect(func(): _caixa_texto.visible = false)
 	add_child(_temporizador_texto)
 
-	# Evidências (lateral direita)
-	_painel_evidencias = _novo_painel()
-	_ancorar(_painel_evidencias, 1, 0, 1, 1, -620, 120, -30, -360)
-	_painel_evidencias.visible = false
-	add_child(_painel_evidencias)
-	var coluna_ev := VBoxContainer.new()
-	_painel_evidencias.add_child(coluna_ev)
-	coluna_ev.add_child(_novo_rotulo("EVIDÊNCIAS", 28, COR_DESTAQUE))
-	var rolagem := ScrollContainer.new()
-	rolagem.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	rolagem.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	coluna_ev.add_child(rolagem)
-	_lista_evidencias = VBoxContainer.new()
-	_lista_evidencias.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_lista_evidencias.add_theme_constant_override("separation", 18)
-	rolagem.add_child(_lista_evidencias)
+	# Quadro de suspeitos (tela cheia, por cima de tudo)
+	_quadro = QuadroSuspeitos.new()
+	_quadro.visible = false
+	_quadro.fechado.connect(_alternar_evidencias)
+	add_child(_quadro)
 
 
 func _novo_painel() -> PanelContainer:
@@ -334,8 +327,21 @@ func _tirar_foto(ponto: Dictionary) -> void:
 	if evidencia.is_empty():
 		mostrar_texto("Foto", "A foto não mostra nada de útil. Bateria desperdiçada.")
 	else:
-		EstadoJogo.adicionar_evidencia(evidencia)
-		mostrar_texto("Nova evidência", evidencia.get("titulo", ""))
+		EstadoJogo.adicionar_evidencia(_com_foto(evidencia, ponto))
+		mostrar_texto("Nova evidência", evidencia.get("titulo", "") + "  ·  veja no quadro de suspeitos [Tab]")
+
+
+## Guarda na evidência o recorte da cena onde a foto foi tirada, para virar miniatura no quadro.
+func _com_foto(evidencia: Dictionary, ponto: Dictionary) -> Dictionary:
+	var copia := evidencia.duplicate()
+	var r: Array = ponto.get("retangulo", [0, 0, 0, 0])
+	var centro := Vector2(r[0] + r[2] / 2.0, r[1] + r[3] / 2.0)
+	var lado := maxf(r[2], r[3]) * 1.3
+	var regiao := Rect2(centro - Vector2(lado, lado * 0.7) / 2.0, Vector2(lado, lado * 0.7))
+	regiao = regiao.intersection(Rect2(0, 0, 1920, 1080))
+	copia["imagem"] = dados.get("imagem", "")
+	copia["regiao"] = [regiao.position.x, regiao.position.y, regiao.size.x, regiao.size.y]
+	return copia
 
 
 func _animar_flash() -> void:
@@ -351,7 +357,10 @@ func _alternar_camera() -> void:
 
 
 func _alternar_evidencias() -> void:
-	_painel_evidencias.visible = not _painel_evidencias.visible
+	_quadro.visible = not _quadro.visible
+	EstadoJogo.pausado = _quadro.visible  # a bateria não gasta enquanto você pensa
+	if _quadro.visible and modo_camera:
+		_alternar_camera()
 
 
 # --- Reações ao estado -------------------------------------------------------
@@ -377,13 +386,5 @@ func _ao_mudar_lanterna(ligada: bool) -> void:
 		(area as Control).mouse_default_cursor_shape = cursor
 
 
-func _ao_adicionar_evidencia(evidencia: Dictionary) -> void:
-	var item := VBoxContainer.new()
-	var titulo := _novo_rotulo(evidencia.get("titulo", ""), 24, COR_DESTAQUE)
-	var texto := _novo_rotulo(evidencia.get("texto", ""), 20, Color(0.85, 0.85, 0.85))
-	texto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	texto.custom_minimum_size = Vector2(520, 0)
-	item.add_child(titulo)
-	item.add_child(texto)
-	_lista_evidencias.add_child(item)
-	_botao_evidencias.text = "Evidências (%d)  [Tab]" % EstadoJogo.evidencias.size()
+func _ao_adicionar_evidencia(_evidencia: Dictionary) -> void:
+	_botao_evidencias.text = "Quadro de suspeitos (%d)  [Tab]" % EstadoJogo.evidencias.size()

@@ -17,22 +17,23 @@ Cinco amigos passam um fim de semana em um chalé à beira de Riviera Lake. Sem 
 
 ## Status
 
-Protótipo da mecânica principal: cena escura explorada com a lanterna do celular, fotos como evidências e bateria limitada.
+Protótipo jogável: cena escura explorada com a lanterna do celular, fotos como evidências, bateria limitada e quadro de suspeitos com contradições.
 
 ## Como rodar
 
-1. Instale o [Godot 4.3](https://godotengine.org/download) (versão padrão, não a .NET).
+1. Baixe o [Godot 4.7](https://godotengine.org/download) (versão padrão, não a .NET). Ele não precisa ser instalado.
 2. Clone este repositório e abra a pasta no Godot (Importar → `project.godot`).
 3. Pressione **F5**.
 
-**Controles:** mouse move a lanterna · clique examina · **F** liga/desliga a lanterna · **C** modo câmera · **Tab** evidências · **Esc** sai da câmera.
+**Controles:** mouse move a lanterna · clique examina · **F** liga/desliga a lanterna · **C** modo câmera · **Tab** quadro de suspeitos (arraste as fotos até as pessoas) · **Esc** sai da câmera.
 
 ## Estrutura
 
 | Pasta | Conteúdo |
 |---|---|
-| `scripts/` | `estado_jogo.gd` (bateria, lanterna, evidências, escolhas) e `cena_investigacao.gd` (cena jogável) |
+| `scripts/` | `estado_jogo.gd` (bateria, lanterna, evidências, quadro, escolhas), `cena_investigacao.gd` (cena jogável) e `quadro_suspeitos.gd` com `cartao_evidencia.gd` e `zona_evidencias.gd` |
 | `data/cenas/` | Uma cena por arquivo JSON: imagem, pontos de interesse, descrições e evidências |
+| `data/quadro.json` | Suspeitos e contradições (quais fotos, presas em quem, confirmam cada uma) |
 | `shaders/` | Escuridão e luz da lanterna |
 | `art/provisorio/` | Arte temporária do protótipo |
 | `docs/` | Documento de design (**contém spoilers**) |
