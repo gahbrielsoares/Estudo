@@ -75,6 +75,12 @@ func adicionar_evidencia(evidencia: Dictionary) -> bool:
 	return true
 
 
+## Regra central do episódio (docs/GDD.md, seção 6): contar a verdade para a Clara
+## na cozinha arma a Clara. Qualquer outra resposta deixa o Rafael sem saída.
+func caminho() -> String:
+	return "clara" if marcadores.get("e2", "") == "verdade" else "rafael"
+
+
 ## Prende uma evidência em um suspeito. Um id vazio devolve a foto para a área de soltas.
 func fixar_evidencia(id_evidencia: String, id_suspeito: String) -> void:
 	if id_suspeito.is_empty():

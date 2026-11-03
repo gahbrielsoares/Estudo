@@ -17,7 +17,7 @@ Cinco amigos passam um fim de semana em um chalé à beira de Riviera Lake. Sem 
 
 ## Status
 
-Protótipo jogável: cena escura explorada com a lanterna do celular, fotos como evidências, bateria limitada e quadro de suspeitos com contradições.
+Ato 1 jogável do início ao fim (com arte provisória): investigação no corredor do chalé, conversa na fogueira e conversa na cozinha, com escolhas que mudam o rumo da história.
 
 ## Como rodar
 
@@ -25,14 +25,18 @@ Protótipo jogável: cena escura explorada com a lanterna do celular, fotos como
 2. Clone este repositório e abra a pasta no Godot (Importar → `project.godot`).
 3. Pressione **F5**.
 
-**Controles:** mouse move a lanterna · clique examina · **F** liga/desliga a lanterna · **C** modo câmera · **Tab** quadro de suspeitos (arraste as fotos até as pessoas) · **Esc** sai da câmera.
+**Controles na investigação:** mouse move a lanterna · clique examina · **F** liga/desliga a lanterna · **C** modo câmera · **Tab** quadro de suspeitos (arraste as fotos até as pessoas) · **Esc** sai da câmera.
+
+**Controles nos diálogos:** clique, **Espaço** ou **Enter** avançam · **1**, **2**, **3** escolhem uma resposta.
+
+**Depuração:** **F1** mostra as escolhas feitas e o caminho da história (só durante o desenvolvimento).
 
 ## Estrutura
 
 | Pasta | Conteúdo |
 |---|---|
-| `scripts/` | `estado_jogo.gd` (bateria, lanterna, evidências, quadro, escolhas), `cena_investigacao.gd` (cena jogável) e `quadro_suspeitos.gd` com `cartao_evidencia.gd` e `zona_evidencias.gd` |
-| `data/cenas/` | Uma cena por arquivo JSON: imagem, pontos de interesse, descrições e evidências |
+| `scripts/` | `jogo.gd` (sequência de cenas), `cena_dialogo.gd` (diálogos e escolhas), `estado_jogo.gd` (bateria, lanterna, evidências, quadro, escolhas), `cena_investigacao.gd` (cena jogável) e `quadro_suspeitos.gd` com `cartao_evidencia.gd` e `zona_evidencias.gd` |
+| `data/cenas/` | Uma cena por arquivo JSON. Investigação: imagem, pontos de interesse e evidências. Diálogo: falas, escolhas e ramificações |
 | `data/quadro.json` | Suspeitos e contradições (quais fotos, presas em quem, confirmam cada uma) |
 | `shaders/` | Escuridão e luz da lanterna |
 | `art/provisorio/` | Arte temporária do protótipo |

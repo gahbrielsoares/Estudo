@@ -2,6 +2,8 @@ extends Control
 ## Cena de investigação: uma ilustração estática explorada com a lanterna do celular.
 ## Os pontos de interesse vêm de um arquivo JSON, para que novas cenas não exijam código novo.
 
+signal concluida(proxima: String)
+
 const QuadroSuspeitos := preload("res://scripts/quadro_suspeitos.gd")
 
 @export_file("*.json") var caminho_dados := "res://data/cenas/cena_01_corredor.json"
@@ -35,9 +37,12 @@ var _botao_lanterna: Button
 var _botao_camera: Button
 var _botao_evidencias: Button
 var _quadro: Control
+var _botao_saida: Button
+var _confirmando_saida := false
 
 
 func _ready() -> void:
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	dados = _carregar_dados(caminho_dados)
 	_montar_cena()
 	_montar_hud()
@@ -216,6 +221,14 @@ func _montar_hud() -> void:
 	_temporizador_texto.timeout.connect(func(): _caixa_texto.visible = false)
 	add_child(_temporizador_texto)
 
+	# Saída da cena (canto superior direito)
+	var saida: Dictionary = dados.get("saida", {})
+	if not saida.is_empty():
+		_botao_saida = _novo_botao("  %s  →  " % saida.get("rotulo", "Continuar"), _ao_clicar_saida.bind(saida))
+		_botao_saida.add_theme_font_size_override("font_size", 24)
+		_ancorar(_botao_saida, 1, 0, 1, 0, -480, 40, -40, 100)
+		add_child(_botao_saida)
+
 	# Quadro de suspeitos (tela cheia, por cima de tudo)
 	_quadro = QuadroSuspeitos.new()
 	_quadro.visible = false
@@ -347,6 +360,17 @@ func _com_foto(evidencia: Dictionary, ponto: Dictionary) -> Dictionary:
 func _animar_flash() -> void:
 	_flash.modulate.a = 0.85
 	create_tween().tween_property(_flash, "modulate:a", 0.0, 0.35)
+
+
+func _ao_clicar_saida(saida: Dictionary) -> void:
+	if not _confirmando_saida:
+		_confirmando_saida = true
+		_botao_saida.text = "  Confirmar  →  "
+		mostrar_texto(saida.get("rotulo", ""), saida.get("confirmacao", "Você não poderá voltar aqui."))
+		return
+	if _quadro.visible:
+		_alternar_evidencias()
+	concluida.emit(dados.get("proxima", ""))
 
 
 func _alternar_camera() -> void:

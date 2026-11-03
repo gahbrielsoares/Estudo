@@ -1,0 +1,51 @@
+{
+  "id": "cena_02_fogueira",
+  "tipo": "dialogo",
+  "imagem": "res://art/provisorio/cena_02_fogueira.png",
+  "personagens": ["clara", "rafael", "bruna", "theo"],
+  "proxima": "cena_03_cozinha",
+  "inicio": "abertura",
+  "nos": {
+    "abertura": { "fala": "narrador", "texto": "Sexta-feira, 21h55. A fogueira estala. Do outro lado do lago, nenhuma luz.", "proximo": "theo_foto" },
+    "theo_foto": { "fala": "theo", "texto": "Todo mundo junto. Sorriam, que essa vai pro álbum.", "proximo": "flash" },
+    "flash": { "fala": "narrador", "texto": "Clique. O flash da câmera antiga ilumina o rosto de todos por meio segundo.", "efeito": "flash", "proximo": "brinde" },
+    "brinde": { "fala": "rafael", "texto": "Um brinde a Riviera Lake! Dois dias sem sinal, sem chefe e sem ninguém pra encher o saco.", "proximo": "clara_brinde" },
+    "clara_brinde": { "fala": "clara", "texto": "Um brinde. A gente estava precisando disso.", "proximo": "bruna_silencio" },
+    "bruna_silencio": { "fala": "narrador", "texto": "A Bruna não levanta o copo. Faz um tempo que ela está olhando para o lago.", "proximo": "rafael_cutuca" },
+    "rafael_cutuca": { "fala": "rafael", "texto": "Ô, Bruna. Volta pra Terra.", "proximo": "bruna_um_ano" },
+    "bruna_um_ano": { "fala": "bruna", "texto": "Amanhã faz um ano.", "proximo": "silencio_geral" },
+    "silencio_geral": { "fala": "narrador", "texto": "Ninguém responde. Só a lenha estalando.", "proximo": "rafael_hoje_nao" },
+    "rafael_hoje_nao": { "fala": "rafael", "texto": "Hoje não, Bruna.", "proximo": "bruna_insiste" },
+    "bruna_insiste": { "fala": "bruna", "texto": "Se não for hoje, vai ser quando? A gente combinou uma história, e todo mundo finge que acredita nela.", "proximo": "clara_pergunta" },
+    "clara_pergunta": { "fala": "clara", "texto": "Que história?", "proximo": "rafael_desconversa" },
+    "rafael_desconversa": { "fala": "rafael", "texto": "Nenhuma história. Ela começou a beber antes de sair de casa, só isso.", "proximo": "theo_gente" },
+    "theo_gente": { "fala": "theo", "texto": "Gente...", "proximo": "bruna_pede" },
+    "bruna_pede": { "fala": "bruna", "texto": "Você estava lá. Fala pra eles. A gente precisa contar a verdade.", "proximo": "e1" },
+    "e1": {
+      "fala": "rafael",
+      "texto": "Pensa bem no que você vai dizer.",
+      "escolhas": [
+        { "texto": "\"A Bruna tem razão. Não dá mais pra fingir.\"", "dito": "A Bruna tem razão. Não dá mais pra fingir.", "definir": { "e1": "bruna" }, "proximo": "bruna_lado_1" },
+        { "texto": "\"Hoje não, Bruna. Aqui não é o lugar.\"", "dito": "Hoje não, Bruna. Aqui não é o lugar.", "definir": { "e1": "rafael" }, "proximo": "rafael_lado_1" },
+        { "texto": "Ficar em silêncio.", "mudo": true, "definir": { "e1": "silencio" }, "proximo": "silencio_1" }
+      ]
+    },
+
+    "bruna_lado_1": { "fala": "bruna", "texto": "Obrigada.", "proximo": "bruna_lado_2" },
+    "bruna_lado_2": { "fala": "rafael", "texto": "Vocês não fazem ideia do que estão falando.", "proximo": "bruna_lado_3" },
+    "bruna_lado_3": { "fala": "narrador", "texto": "O Rafael chuta a areia para dentro da fogueira e sai em direção ao chalé.", "proximo": "clara_olha" },
+
+    "rafael_lado_1": { "fala": "rafael", "texto": "Viu? Assunto encerrado. Quem quer outra cerveja?", "proximo": "rafael_lado_2" },
+    "rafael_lado_2": { "fala": "bruna", "texto": "Covardes. Vocês todos.", "proximo": "rafael_lado_3" },
+    "rafael_lado_3": { "fala": "narrador", "texto": "A Bruna se levanta e vai até a beira do lago, de costas para o grupo.", "proximo": "clara_olha" },
+
+    "silencio_1": { "fala": "narrador", "texto": "Você não diz nada. Às vezes, o silêncio responde por você.", "proximo": "silencio_2" },
+    "silencio_2": { "fala": "rafael", "texto": "Viu? Ninguém quer falar disso. Assunto encerrado.", "proximo": "silencio_3" },
+    "silencio_3": { "fala": "narrador", "texto": "A Bruna se levanta sem dizer nada e vai até a beira do lago.", "proximo": "clara_olha" },
+
+    "clara_olha": { "fala": "narrador", "texto": "A Clara não diz nada. Mas fica olhando para você por um tempo longo demais.", "proximo": "theo_gelo" },
+    "theo_gelo": { "fala": "theo", "texto": "Bom... alguém precisa buscar mais gelo na cozinha.", "proximo": "clara_convida" },
+    "clara_convida": { "fala": "clara", "texto": "Eu vou. Vem comigo?", "proximo": "fim" },
+    "fim": { "fim": true }
+  }
+}

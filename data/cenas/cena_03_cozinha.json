@@ -1,0 +1,51 @@
+{
+  "id": "cena_03_cozinha",
+  "tipo": "dialogo",
+  "imagem": "res://art/provisorio/cena_03_cozinha.png",
+  "personagens": ["clara"],
+  "proxima": "fim_ato_1",
+  "inicio": "abertura",
+  "nos": {
+    "abertura": { "fala": "narrador", "texto": "22h10. A lâmpada amarela da cozinha zumbe. Lá fora, as vozes parecem distantes.", "proximo": "gelo" },
+    "gelo": { "fala": "clara", "texto": "Me ajuda com o gelo?", "proximo": "freezer" },
+    "freezer": { "fala": "narrador", "texto": "Ela abre o freezer e fica parada, de costas para você. O ar gelado embaça a janela.", "proximo": "irmao" },
+    "irmao": { "fala": "clara", "texto": "O Davi era meu irmão. Você sabe disso.", "proximo": "lembra_e1" },
+
+    "lembra_e1": {
+      "ramos": [
+        { "se": { "e1": "bruna" }, "proximo": "lembra_bruna" },
+        { "se": { "e1": "rafael" }, "proximo": "lembra_rafael" }
+      ],
+      "senao": "lembra_silencio"
+    },
+    "lembra_bruna": { "fala": "clara", "texto": "Você disse que a Bruna tem razão. Então existe uma verdade.", "proximo": "policia" },
+    "lembra_rafael": { "fala": "clara", "texto": "Você mandou a Bruna se calar. Por quê?", "proximo": "policia" },
+    "lembra_silencio": { "fala": "clara", "texto": "Você não disse nada lá fora. Mas eu vi a sua cara.", "proximo": "policia" },
+
+    "policia": { "fala": "clara", "texto": "A polícia disse que ele bebeu demais e caiu na piscina sozinho. Eu nunca acreditei.", "proximo": "vira" },
+    "vira": { "fala": "narrador", "texto": "Ela fecha o freezer e se vira. Os olhos estão vermelhos, mas a voz continua calma.", "proximo": "e2" },
+    "e2": {
+      "fala": "clara",
+      "texto": "Vocês estavam lá naquela noite. O que aconteceu de verdade com o meu irmão?",
+      "escolhas": [
+        { "texto": "\"O Rafael brigou com ele. Empurrou o Davi na piscina e voltou pra dentro. Todo mundo sabia.\"", "dito": "O Rafael brigou com ele. Empurrou o Davi na piscina e voltou pra dentro. Todo mundo sabia.", "definir": { "e2": "verdade" }, "proximo": "verdade_1" },
+        { "texto": "\"Ele bebeu demais, Clara. Foi um acidente. Ninguém viu.\"", "dito": "Ele bebeu demais, Clara. Foi um acidente. Ninguém viu.", "definir": { "e2": "mentira" }, "proximo": "mentira_1" },
+        { "texto": "\"Eu não lembro direito daquela noite.\"", "dito": "Eu não lembro direito daquela noite.", "definir": { "e2": "evasiva" }, "proximo": "mentira_1" }
+      ]
+    },
+
+    "verdade_1": { "fala": "narrador", "texto": "A Clara fica em silêncio. Depois, te abraça. Um abraço longo e firme.", "proximo": "verdade_2" },
+    "verdade_2": { "fala": "clara", "texto": "Obrigada. Você é a primeira pessoa que me fala a verdade em um ano.", "proximo": "verdade_3" },
+    "verdade_3": { "fala": "clara", "texto": "Não conta pra eles que eu sei, tá? Me deixa pensar no que fazer.", "proximo": "verdade_4" },
+    "verdade_4": { "fala": "narrador", "texto": "Ela sorri, pega o gelo e volta para a fogueira como se nada tivesse acontecido.", "proximo": "apagao" },
+
+    "mentira_1": { "fala": "clara", "texto": "Tá bom.", "proximo": "mentira_2" },
+    "mentira_2": { "fala": "narrador", "texto": "Ela fecha o freezer devagar.", "proximo": "mentira_3" },
+    "mentira_3": { "fala": "clara", "texto": "Eu achei que, de todos eles, você seria diferente.", "proximo": "mentira_4" },
+    "mentira_4": { "fala": "narrador", "texto": "Ela sai sem levar o gelo. Pela janela, você vê a Bruna na beira do lago, digitando no celular sem sinal. Ela escreve, apaga e escreve de novo.", "proximo": "apagao" },
+
+    "apagao": { "fala": "narrador", "texto": "22h31. A lâmpada da cozinha pisca uma vez. Duas. E apaga.", "efeito": "apagar", "proximo": "escuro" },
+    "escuro": { "fala": "narrador", "texto": "Lá fora, alguém grita por você.", "proximo": "fim" },
+    "fim": { "fim": true }
+  }
+}
